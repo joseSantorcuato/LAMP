@@ -1,0 +1,83 @@
+Instalación PhpMyAdmin UBuntu 16.04, selección de versión Php y solución a problema con Laravel.
+José Santorcuato Tapia
+santorcuato76@gmail.com
+Chile 2017
+
+
+Por defecto Ubuntu 16.04 viene con PHP 7 que no es lo más cómodo para trabajar, y que requiere instalar algunas dependencias para que funcione con frameworks como Laravel. 
+
+Agregamos repositorio de las versiones de  tipo ppa para obtener versiones de Php:
+
+sudo add-apt-repository ppa:ondrej/php
+
+Acualizamos paquetes:
+
+sudo apt-get update
+
+Instalaremos Apache:
+
+apt-get install libapache2-mod-php
+
+Se puede correr el servidor con :
+
+sudo service apache2 restart
+
+Si ingresas a tu navegador deberías ver la página de inicio de Apache!. (http://localhost)
+
+Ahora viene lo delicado, si ves el siguiente comando de terminal notarás que le falta el mbstring de php 7, luego al instalar composer y principlamente Laravel no podrá crear los proyectos, pasa lo mismo con la llibrería xml.
+
+Vamos entonces a instalar los php, luego seleccionamos la versión:
+
+sudo apt-get install php7.0 php5.6 php5.6-mysql php-gettext php5.6-mbstring php-xdebug libapache2-mod-php5.6 libapache2-mod-php7.0
+
+Acualizamos paquetes:
+
+sudo apt-get update
+
+Instalaremos PhpMyAdmin:
+
+sudo apt-get install phpmyadmin
+
+
+Instalaremos ahora un editor de texto para editar el documento de configuración de Apache:
+
+sudo apt-get install gedit
+
+Ahora vincularemos Apache con PhpMyAdmin:
+
+sudo gedit /etc/apache2/apache2.conf
+
+Al final de el archivo que te abrirá escribe y guarda:
+
+Include /etc/phpmyadmin/apache.conf
+
+Vamos ahora a cambiar la versión de PHP 7 a 5.6, primero escribe en terminal
+
+php -version
+
+Ahí deberías ver la 7.0 vamos a cambiarla:
+
+sudo a2dismod php7.0 ; sudo a2enmod php5.6 ; sudo service apache2 restart
+
+sudo update-alternatives --set php /usr/bin/php5.6
+
+sudo service apache2 restart
+
+Vuelve a escribir :
+
+php -version
+
+Ya deberías tener la 5.6
+
+Ahora...vamos a tu navegador a http://localhost/phpmyadmin haz el login como root y con la password de superusuario.
+
+
+Recomendacione extras para Laravel vía composer, sólo si tienes composer y tratas de crear un proyecto(opcional):
+
+sudo apt-get install php-mbstring
+
+sudo apt-get install curl php-curl php-mcrypt php-mbstring php-gettext
+
+sudo apt-get install php5.6-xml
+
+*Los principales errores de creación de proyectos en Laravel tienen que ver con la versión de PHP, los CLI y los mbstrings, dom...
