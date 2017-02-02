@@ -4,9 +4,13 @@ santorcuato76@gmail.com
 Chile 2017
 
 
-Por defecto Ubuntu 16.04 viene con PHP 7 que no es lo más cómodo para trabajar, y que requiere instalar algunas dependencias para que funcione con frameworks como Laravel. 
+Por defecto Ubuntu 16.04 viene con PHP 7 que no es lo más cómodo para trabajar, y que requiere instalar algunas dependencias para que funcione con frameworks como Laravel.
 
-Agregamos repositorio de las versiones de  tipo ppa para obtener versiones de Php:
+Agregamos repositorio de las versiones de  tipo ppa para obtener versiones de PhP:
+
+sudo apt-get install mysql-server
+
+sudo apt-get install python-mysqldb
 
 sudo add-apt-repository ppa:ondrej/php
 
