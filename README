@@ -37,6 +37,10 @@ Vamos entonces a instalar los php, luego seleccionamos la versión:
 
 sudo apt-get install php7.0 php5.6 php5.6-mysql php-gettext php5.6-mbstring php-xdebug libapache2-mod-php5.6 libapache2-mod-php7.0
 
+O solo la 5.6 
+
+sudo apt-get install php5.6 php5.6-mysql php-gettext php5.6-mbstring php-xdebug libapache2-mod-php5.6 
+
 Acualizamos paquetes:
 
 sudo apt-get update
@@ -62,6 +66,7 @@ Vamos ahora a cambiar la versión de PHP 7 a 5.6, primero escribe en terminal
 
 php -version
 
+
 Ahí deberías ver la 7.0 vamos a cambiarla:
 
 sudo a2dismod php7.0 ; sudo a2enmod php5.6 ; sudo service apache2 restart
@@ -76,10 +81,32 @@ php -version
 
 Ya deberías tener la 5.6
 
+
+Si por alguna razón algo sale mal puedes siempre desinstalar apache
+
+sudo apt-get -o DPkg::Options::="--force-confmiss" --reinstall install apache2
+
+sudo apt-get purge apache2
+
+grep -r mpm_event_module /etc/apache2
+
+Habría también que eliminar los php.. y seguir consultando php -version
+
+
+sudo apt-get purge php7.1-common
+sudo apt-get purge php7.0-common
+
+Incluso remover php 5.6
+
+
+Luego instalar sudo apt-get install php5.6 php5.6-mysql php-gettext php5.6-mbstring php-xdebug libapache2-mod-php5.6 
+
+sudo apt install php libapache2-mod-php
+
 Ahora...vamos a tu navegador a http://localhost/phpmyadmin haz el login como root y con la password de superusuario.
 
 
-Recomendacione extras para Laravel vía composer, sólo si tienes composer y tratas de crear un proyecto(opcional):
+Recomendacione extras para Laravel vía composer, sólo si tienes composer y tratas de crear un proyecto(opcional, tener cuidado instalará también lo de  php 7.x.Leer bien terminal, instalar sólo si dice php 5.6):
 
 sudo apt-get install php-mbstring
 
